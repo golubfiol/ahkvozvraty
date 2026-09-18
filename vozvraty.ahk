@@ -141,33 +141,30 @@ if FileExist(SettingsFile) {
 global StatusText
 global OverlayVisible := true
 
-Gui, +AlwaysOnTop +ToolWindow -Caption +E0x20 +E0x08000000
+Gui, +AlwaysOnTop +ToolWindow -Caption +E0x20
 Gui, Color, 1A1A1A
-
-; --- Кнопка СБРОС ---
-Gui, Font, s11 cYellow Bold, Segoe UI
-Gui, Add, Text, x15 y10 w370 h30 gResetWait Center Border 0x200, [ СБРОС (откат к началу) ]
 
 ; --- Бинды ---
 Gui, Font, s11 cWhite Bold, Segoe UI
-Gui, Add, Text, x15 y55 w370 cLime, === БИНДЫ ===
+Gui, Add, Text, x15 y15 w370 cLime, === БИНДЫ ===
 Gui, Font, s10 cWhite Norm
-Gui, Add, Text, x15 y85  w370, Ctrl + Numpad1 - Товар с реализации
-Gui, Add, Text, x15 y107 w370, Ctrl + Numpad+ - Продолжить задачу
-Gui, Add, Text, x15 y129 w370, Ctrl + Numpad5 - Поиск по клиентскому
-Gui, Add, Text, x15 y151 w370, Ctrl + Numpad7 - Поздний возврат 9
-Gui, Add, Text, x15 y173 w370, Ctrl + Numpad8 - Поздний возврат 18
-Gui, Add, Text, x15 y195 w370, Ctrl + Numpad9 - Поздний возврат 27
-Gui, Add, Text, x15 y217 w370, Ctrl + Numpad0 - Изменить клиентский номер
-Gui, Add, Text, x15 y239 w370, Insert - Скрыть/Показать
+Gui, Add, Text, x15 y45  w370, Ctrl + Numpad1 - Товар с реализации
+Gui, Add, Text, x15 y67  w370, Ctrl + Numpad+ - Продолжить задачу
+Gui, Add, Text, x15 y89  w370, Ctrl + Numpad- - Сброс (откат к началу)
+Gui, Add, Text, x15 y111 w370, Ctrl + Numpad5 - Поиск по клиентскому
+Gui, Add, Text, x15 y133 w370, Ctrl + Numpad7 - Поздний возврат 9
+Gui, Add, Text, x15 y155 w370, Ctrl + Numpad8 - Поздний возврат 18
+Gui, Add, Text, x15 y177 w370, Ctrl + Numpad9 - Поздний возврат 27
+Gui, Add, Text, x15 y199 w370, Ctrl + Numpad0 - Изменить клиентский номер
+Gui, Add, Text, x15 y221 w370, Insert - Скрыть/Показать
 
 ; --- Статус ---
 Gui, Font, s11 cWhite Bold, Segoe UI
-Gui, Add, Text, x15 y275 w370 cLime, === СТАТУС ===
+Gui, Add, Text, x15 y257 w370 cLime, === СТАТУС ===
 Gui, Font, s10 cYellow Norm
-Gui, Add, Text, x15 y300 w370 vStatusText, Готов
+Gui, Add, Text, x15 y282 w370 vStatusText, Готов
 
-Gui, Show, x0 y300 w400 h340, Overlay
+Gui, Show, x0 y300 w400 h325 NoActivate, Overlay
 
 UpdateOverlayPosition()
 WinSet, Transparent, 128, Overlay
@@ -181,8 +178,8 @@ UpdateOverlayPosition() {
     SysGet, ScreenW, 0
     SysGet, ScreenH, 1
     posX := ScreenW - 420
-    posY := (ScreenH - 340) // 2
-    Gui, Show, x%posX% y%posY% w400 h340, Overlay
+    posY := (ScreenH - 325) // 2
+    Gui, Show, x%posX% y%posY% w400 h325 NoActivate, Overlay
 }
 
 ; ============================================
@@ -201,9 +198,9 @@ BlinkWait:
 return
 
 ; ============================================
-; Кнопка СБРОС
+; Ctrl + Numpad- (минус) — сброс
 ; ============================================
-ResetWait:
+^NumpadSub::
     CurrentTask := ""
     UpdateStatus("Сброшено. Готов к новой задаче.")
     Sleep, 1500
