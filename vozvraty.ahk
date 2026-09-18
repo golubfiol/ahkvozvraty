@@ -7,7 +7,7 @@ SetBatchLines, -1
 ; ============================================
 ; НАСТРОЙКИ АВТООБНОВЛЕНИЯ
 ; ============================================
-global CurrentVersion := "2.1"
+global CurrentVersion := "2.2"
 global UpdateUrl := "https://raw.githubusercontent.com/golubfiol/ahkvozvraty/refs/heads/main/latest_version.txt"
 global ScriptUrl := "https://raw.githubusercontent.com/golubfiol/ahkvozvraty/refs/heads/main/vozvraty.ahk"
 
@@ -155,7 +155,7 @@ Gui, Add, Text, x15 y111 w370, 4) Ctrl + Numpad7 - Поздний возврат
 Gui, Add, Text, x15 y133 w370, 5) Ctrl + Numpad8 - Поздний возврат 18
 Gui, Add, Text, x15 y155 w370, 6) Ctrl + Numpad9 - Поздний возврат 27
 Gui, Add, Text, x15 y177 w370, 7) Ctrl + Numpad0 - Изменить клиентский номер
-Gui, Add, Text, x15 y199 w370, 8) Ctrl + Numpad+ - Продолжить задачу 1/4
+Gui, Add, Text, x15 y199 w370, 8) Ctrl + Numpad+ - Продолжить задачу реализация/47
 Gui, Add, Text, x15 y221 w370, 9) Ctrl + Numpad- - Сброс
 Gui, Add, Text, x15 y243 w370, 10) Insert - Скрыть/Показать
 Gui, Add, Text, x15 y265 w370, 11) End - Закрыть ахк
