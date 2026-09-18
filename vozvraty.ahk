@@ -303,7 +303,12 @@ return
     Sleep, 50
     SendInput, {Enter}
     Sleep, 50
-    SendInput, {Text}Василия петушкова, 25`%
+    ClipSaved := ClipboardAll
+Clipboard := "%Василия петушкова, 25%"
+ClipWait, 1
+SendInput, ^v
+Sleep, 50
+Clipboard := ClipSaved
     Sleep, 50
     SendInput, {Enter}
     Sleep, 50
