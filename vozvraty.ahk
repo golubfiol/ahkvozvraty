@@ -1,4 +1,4 @@
-﻿#NoEnv
+#NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 CoordMode, Mouse, Screen
@@ -141,27 +141,33 @@ if FileExist(SettingsFile) {
 global StatusText
 global OverlayVisible := true
 
-Gui, +AlwaysOnTop +ToolWindow -Caption +E0x20
+Gui, +AlwaysOnTop +ToolWindow -Caption +E0x20 +E0x08000000
 Gui, Color, 1A1A1A
+
+; --- Кнопка СБРОС ---
+Gui, Font, s11 cYellow Bold, Segoe UI
+Gui, Add, Text, x15 y10 w370 h30 gResetWait Center Border 0x200, [ СБРОС (откат к началу) ]
+
+; --- Бинды ---
 Gui, Font, s11 cWhite Bold, Segoe UI
-
-Gui, Add, Button, x15 y10 w370 h28 gResetWait, СБРОС (откат к началу)
-
-Gui, Add, Text, x15 y50 w370 cLime, === БИНДЫ ===
+Gui, Add, Text, x15 y55 w370 cLime, === БИНДЫ ===
 Gui, Font, s10 cWhite Norm
-Gui, Add, Text, x15 y80  w370, Ctrl + Numpad1 - Товар с реализации 1
-Gui, Add, Text, x15 y102 w370, Ctrl + Numpad+ - Продолжить задачу
-Gui, Add, Text, x15 y124 w370, Ctrl + Numpad5 - Поиск по клиентскому
-Gui, Add, Text, x15 y146 w370, Ctrl + Numpad7 - Поздний возврат 9
-Gui, Add, Text, x15 y168 w370, Ctrl + Numpad8 - Поздний возврат 18
-Gui, Add, Text, x15 y190 w370, Ctrl + Numpad9 - Поздний возврат 27
-Gui, Add, Text, x15 y212 w370, Ctrl + Numpad0 - Изменить клиентский номер
-Gui, Add, Text, x15 y234 w370, Insert - Скрыть/Показать
-Gui, Font, s11 cWhite Bold
-Gui, Add, Text, x15 y268 w370 cLime, === СТАТУС ===
+Gui, Add, Text, x15 y85  w370, Ctrl + Numpad1 - Товар с реализации
+Gui, Add, Text, x15 y107 w370, Ctrl + Numpad+ - Продолжить задачу
+Gui, Add, Text, x15 y129 w370, Ctrl + Numpad5 - Поиск по клиентскому
+Gui, Add, Text, x15 y151 w370, Ctrl + Numpad7 - Поздний возврат 9
+Gui, Add, Text, x15 y173 w370, Ctrl + Numpad8 - Поздний возврат 18
+Gui, Add, Text, x15 y195 w370, Ctrl + Numpad9 - Поздний возврат 27
+Gui, Add, Text, x15 y217 w370, Ctrl + Numpad0 - Изменить клиентский номер
+Gui, Add, Text, x15 y239 w370, Insert - Скрыть/Показать
+
+; --- Статус ---
+Gui, Font, s11 cWhite Bold, Segoe UI
+Gui, Add, Text, x15 y275 w370 cLime, === СТАТУС ===
 Gui, Font, s10 cYellow Norm
-Gui, Add, Text, x15 y293 w370 vStatusText, Готов
-Gui, Show, x0 y300 w400 h335, Overlay
+Gui, Add, Text, x15 y300 w370 vStatusText, Готов
+
+Gui, Show, x0 y300 w400 h340, Overlay
 
 UpdateOverlayPosition()
 WinSet, Transparent, 128, Overlay
@@ -175,8 +181,8 @@ UpdateOverlayPosition() {
     SysGet, ScreenW, 0
     SysGet, ScreenH, 1
     posX := ScreenW - 420
-    posY := (ScreenH - 335) // 2
-    Gui, Show, x%posX% y%posY% w400 h335 NoActivate, Overlay
+    posY := (ScreenH - 340) // 2
+    Gui, Show, x%posX% y%posY% w400 h340, Overlay
 }
 
 ; ============================================
@@ -261,7 +267,7 @@ return
 ^Numpad1::
     CurrentTask := "1"
     SetKeyDelay, 50, 30
-    UpdateStatus("Задача 1: часть 1...")
+    UpdateStatus("Товар с реализации: часть 1...")
 
     SendInput, ^n
     Sleep, 300
@@ -280,7 +286,7 @@ return
 ; ============================================
 ^NumpadAdd::
     if (CurrentTask = "1") {
-        UpdateStatus("Продолжение задачи 1...")
+        UpdateStatus("Продолжение задачи...")
         SetKeyDelay, 50, 30
 
         MouseClick, Left, 980, 310, 2
@@ -300,7 +306,7 @@ return
         Sleep, 150
 
         CurrentTask := ""
-        UpdateStatus("Задача 1 завершена")
+        UpdateStatus("Задача завершена")
         Sleep, 1200
         UpdateStatus("Готов")
     }
