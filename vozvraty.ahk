@@ -161,7 +161,7 @@ Gui, Font, s11 cWhite Bold
 Gui, Add, Text, x15 y268 w370 cLime, === СТАТУС ===
 Gui, Font, s10 cYellow Norm
 Gui, Add, Text, x15 y293 w370 vStatusText, Готов
-Gui, Show, x0 y300 w400 h335 NoActivate, Overlay
+Gui, Show, x0 y300 w400 h335, Overlay
 
 UpdateOverlayPosition()
 WinSet, Transparent, 128, Overlay
