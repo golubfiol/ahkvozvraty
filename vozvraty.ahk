@@ -1,4 +1,4 @@
-﻿#NoEnv
+#NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 CoordMode, Mouse, Screen
@@ -7,7 +7,7 @@ SetBatchLines, -1
 ; ============================================
 ; НАСТРОЙКИ АВТООБНОВЛЕНИЯ
 ; ============================================
-global CurrentVersion := "2.8"
+global CurrentVersion := "2.9"
 global UpdateUrl := "https://raw.githubusercontent.com/golubfiol/ahkvozvraty/refs/heads/main/latest_version.txt"
 global ScriptUrl := "https://raw.githubusercontent.com/golubfiol/ahkvozvraty/refs/heads/main/vozvraty.ahk"
 
@@ -18,7 +18,6 @@ global SettingsFile := A_ScriptDir . "\vozvraty.ini"
 global SearchNumber  := "66811"
 global SearchNumber1 := "86958"
 
-; --- Особый случай ---
 global F5_ClientNumber  := ""
 global F5_Months        := ""
 global F5_UsePercent    := 0
@@ -304,6 +303,9 @@ ChangeSpecial:
     ShowSpecialDialog()
 return
 
+; ============================================
+; Особый случай — окно
+; ============================================
 ShowSpecialDialog() {
     global F5_ClientNumber, F5_Months, F5_UsePercent, F5_Percent, F5_UseComment, F5_Comment
 
@@ -312,28 +314,75 @@ ShowSpecialDialog() {
     Gui, Special:Color, 1A1A1A
     Gui, Special:Font, s11 cWhite Bold, Segoe UI
     Gui, Special:Add, Text, x20 y15 w420 cLime, Особый случай (Ctrl+F5)
-    Gui, Special:Font, s10 cWhite Norm
 
+    ; --- Текстовые подписи белые ---
+    Gui, Special:Font, s10 cWhite Norm, Segoe UI
     Gui, Special:Add, Text, x20 y50 w200, Клиентский номер:
+
+    ; --- Поля ввода: чёрный текст на белом фоне ---
+    Gui, Special:Font, s10 cBlack Norm, Segoe UI
     Gui, Special:Add, Edit, x230 y47 w200 vSpecClient, %F5_ClientNumber%
 
+    Gui, Special:Font, s10 cWhite Norm, Segoe UI
     Gui, Special:Add, Text, x20 y80 w200, Количество месяцев:
+
+    Gui, Special:Font, s10 cBlack Norm, Segoe UI
     Gui, Special:Add, Edit, x230 y77 w200 vSpecMonths, %F5_Months%
 
-    Gui, Special:Add, Checkbox, x20 y115 w400 vSpecUsePercent Checked%F5_UsePercent%, Изменить дефолтный процент
+    ; --- Галочка процента ---
+    Gui, Special:Font, s10 cWhite Norm, Segoe UI
+    Gui, Special:Add, Checkbox, x20 y115 w400 vSpecUsePercent gTogglePercent Checked%F5_UsePercent%, Изменить дефолтный процент
     Gui, Special:Add, Text, x40 y145 w190, Процент:
+
+    Gui, Special:Font, s10 cBlack Norm, Segoe UI
     Gui, Special:Add, Edit, x230 y142 w200 vSpecPercent, %F5_Percent%
 
-    Gui, Special:Add, Checkbox, x20 y180 w400 vSpecUseComment Checked%F5_UseComment%, Добавить комментарий
+    ; --- Галочка комментария ---
+    Gui, Special:Font, s10 cWhite Norm, Segoe UI
+    Gui, Special:Add, Checkbox, x20 y180 w400 vSpecUseComment gToggleComment Checked%F5_UseComment%, Добавить комментарий
     Gui, Special:Add, Text, x40 y210 w190, Комментарий:
+
+    Gui, Special:Font, s10 cBlack Norm, Segoe UI
     Gui, Special:Add, Edit, x230 y207 w200 vSpecComment, %F5_Comment%
 
-    Gui, Special:Font, s10 cWhite Bold
+    ; --- Кнопки ---
+    Gui, Special:Font, s10 cWhite Bold, Segoe UI
     Gui, Special:Add, Button, x230 y250 w200 h32 gSpecSave, Сохранить
     Gui, Special:Add, Button, x20 y250 w200 h32 gSpecCancel, Отмена
 
     Gui, Special:Show, w450 h300, Особый случай
+
+    ; Применяем начальное состояние полей
+    ApplySpecialEnabledState()
 }
+
+; ============================================
+; Включение/выключение полей по галочкам
+; ============================================
+ApplySpecialEnabledState() {
+    global F5_UsePercent, F5_UseComment
+
+    GuiControlGet, pState,, SpecUsePercent
+    GuiControlGet, cState,, SpecUseComment
+
+    if (pState)
+        GuiControl, Special:Enable, SpecPercent
+    else
+        GuiControl, Special:Disable, SpecPercent
+
+    if (cState)
+        GuiControl, Special:Enable, SpecComment
+    else
+        GuiControl, Special:Disable, SpecComment
+}
+
+TogglePercent:
+    ApplySpecialEnabledState()
+return
+
+ToggleComment:
+    ApplySpecialEnabledState()
+return
 
 SpecSave:
     Gui, Special:Submit, NoHide
