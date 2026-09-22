@@ -728,4 +728,4 @@ return
 
 UpdateStatus(txt) {
     GuiControl,, StatusText, %txt%
-}Ы
+}
