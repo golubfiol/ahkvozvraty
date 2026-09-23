@@ -281,7 +281,7 @@ BuildOverlay() {
     posY := (ScreenH - winH) // 2
     Gui, Main:Show, x%posX% y%posY% w%winW% h%winH% NoActivate, Overlay
 
-    WinSet, Transparent, 128, Main
+    WinSet, Transparent, 60, Main
 }
 
 ; ============================================
@@ -844,7 +844,7 @@ Insert::
         OverlayVisible := false
     } else {
         Gui, Main:Show, NoActivate, Overlay
-        WinSet, Transparent, 128, Main
+        WinSet, Transparent, 60, Main
         OverlayVisible := true
     }
 return
