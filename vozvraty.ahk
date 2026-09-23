@@ -545,7 +545,7 @@ return
         UpdateStatus("Дека: Создать список v-склады...")
 
         MouseClick, Left, 58, 441
-        Sleep, 3000
+        Sleep, 6000
 
         MouseClick, Left, 16, 68
         Sleep, 1000
