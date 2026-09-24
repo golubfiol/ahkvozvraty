@@ -7,7 +7,7 @@ SetBatchLines, -1
 ; ============================================
 ; НАСТРОЙКИ АВТООБНОВЛЕНИЯ
 ; ============================================
-global CurrentVersion := "4.0"
+global CurrentVersion := "4.1"
 global UpdateUrl := "https://raw.githubusercontent.com/golubfiol/ahkvozvraty/refs/heads/main/latest_version.txt"
 global ScriptUrl := "https://raw.githubusercontent.com/golubfiol/ahkvozvraty/refs/heads/main/vozvraty.ahk"
 
