@@ -251,9 +251,9 @@ BuildOverlay() {
     else if (Profile = "Дека") {
         Gui, Main:Add, Text, x15 y%yPos% w400, 1) Ctrl + Numpad1 - Создать список v-склады
         yPos += 22
-        Gui, Main:Add, Text, x15 y%yPos% w400, 2) Ctrl + Numpad7 - Вставить код 1
+        Gui, Main:Add, Text, x15 y%yPos% w400, 2) Ctrl + Numpad7 - Триал Виталий
         yPos += 22
-        Gui, Main:Add, Text, x15 y%yPos% w400, 3) Ctrl + Numpad8 - Вставить код 2
+        Gui, Main:Add, Text, x15 y%yPos% w400, 3) Ctrl + Numpad8 - Триал Георгий
         yPos += 22
         Gui, Main:Add, Text, x15 y%yPos% w400, 4) Ctrl + Numpad/ - Сменить профиль
         yPos += 22
