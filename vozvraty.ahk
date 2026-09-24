@@ -823,13 +823,13 @@ DoRoutine(num) {
         UpdateStatus("Дека: вставка кода 1...")
 
         MouseClick, Left, 758, 658
-        Sleep, 50
+        Sleep, 200
         MouseClick, Left, 875, 453
-        Sleep, 50
+        Sleep, 200
         MouseClick, Left, 1053, 660
-        Sleep, 50
+        Sleep, 200
         MouseClick, Left, 959, 380
-        Sleep, 50
+        Sleep, 200
 
         Clipboard := "]C04WjP7O8j03fMZPHPvqEA8A0r+cUP/XLX"
         ClipWait, 1
