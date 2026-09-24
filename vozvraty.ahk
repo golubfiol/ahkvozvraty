@@ -7,7 +7,7 @@ SetBatchLines, -1
 ; ============================================
 ; НАСТРОЙКИ АВТООБНОВЛЕНИЯ
 ; ============================================
-global CurrentVersion := "4.1"
+global CurrentVersion := "4.2"
 global UpdateUrl := "https://raw.githubusercontent.com/golubfiol/ahkvozvraty/refs/heads/main/latest_version.txt"
 global ScriptUrl := "https://raw.githubusercontent.com/golubfiol/ahkvozvraty/refs/heads/main/vozvraty.ahk"
 
@@ -857,13 +857,13 @@ return
         UpdateStatus("Дека: вставка кода 2...")
 
         MouseClick, Left, 758, 658
-        Sleep, 50
+        Sleep, 200
         MouseClick, Left, 875, 453
-        Sleep, 50
+        Sleep, 200
         MouseClick, Left, 1053, 660
-        Sleep, 50
+        Sleep, 200
         MouseClick, Left, 959, 380
-        Sleep, 50
+        Sleep, 200
 
         Clipboard := "]C00Wjhz/xLVeod5LTxah1T9EodPWB/2tHx"
         ClipWait, 1
