@@ -547,7 +547,7 @@ return
         SetKeyDelay, 30, 20
         UpdateStatus("Дека: Создать список v-склады...")
 
-        MouseClick, Left, 58, 441
+        MouseClick, Left, 58, 620
         Sleep, 3000
 
         MouseClick, Left, 16, 68
